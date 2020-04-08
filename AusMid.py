@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
-from urllib.request import urlopen
 import selenium as sl
 from selenium import webdriver
 from pymongo import MongoClient 
