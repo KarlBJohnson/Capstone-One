@@ -6,6 +6,7 @@ from pymongo import MongoClient
 import psycopg2 as pg2
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
+import time
 
 options = Options()
 options.add_argument("--headless")
@@ -24,8 +25,8 @@ while current_date != end_date:
     formattedUrl = url.format(Station, current_date.year, current_date.month, current_date.day)
     driver = webdriver.Chrome(options=options)
     driver.get(formattedUrl)
-    driver.implicitly_wait(12)
-
+    #driver.implicitly_wait(12)
+    time.sleep(10)
     #html = driver.page_source
     #html = requests.get(formattedUrl).text
     soup = BeautifulSoup(driver.page_source, 'html.parser')
@@ -64,7 +65,7 @@ while current_date != end_date:
     try:
         HistAvgAvgTemp = float(weather_data[10].text)
     except:
-        HisAvgAvgTemp = None
+        HistAvgAvgTemp = None
     try:
         ActPrecip = float(weather_data[15].text)
     except:
