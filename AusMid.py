@@ -18,7 +18,7 @@ cur = conn.cursor()
 url = 'https://www.wunderground.com/history/daily/{}/date/{}-{}-{}'
 while current_date != end_date:
     formattedUrl = url.format(Station, current_date.year, current_date.month, current_date.day)
-    driver = webdriver.Firefox(executable_path='/home/geckodriver')
+    driver = webdriver.Firefox(executable_path='/home/ubuntu/geckodriver')
     driver.get(formattedUrl)
     driver.implicitly_wait(20)
 
