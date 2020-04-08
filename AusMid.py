@@ -16,9 +16,12 @@ cur = conn.cursor()
 #cur.execute('CREATE TABLE Weather (Entryid int NOT NULL AUTO_INCREMENT, Station VARCHAR(255), ActualHighTemp int, HistAvgHighTemp int, ActualLowTemp into, HistAvgLowTemp int, ActualDailyAvgTemp int, HistAvgAvgTemp int, ActualPrecip float, HistAvgPrecip float, Date datetime, Year int, Month int, Day int, PRIMARY KEY(Entryid))')
 #db.insert['coll']("Station", "Actual High Temp", "HistAvg High Temp", "Actual Low Temp", "HistAvg Low Temp", "Actual Daily Avg Temp","HistAvg Average Temp", "Actual Precip", "HistAvg Precip", "Actual Wind", "HistAvg Wind", "Date", "Year","Month", "Day")
 url = 'https://www.wunderground.com/history/daily/{}/date/{}-{}-{}'
+options = sl.webdriver.ChromeOptions()
+options.add_argument('headless')
+
 while current_date != end_date:
     formattedUrl = url.format(Station, current_date.year, current_date.month, current_date.day)
-    driver = webdriver.Firefox(executable_path='/home/ubuntu/geckodriver')
+    driver = sl.webdriver.Chrome()
     driver.get(formattedUrl)
     driver.implicitly_wait(20)
 
