@@ -25,8 +25,9 @@ while current_date != end_date:
     formattedUrl = url.format(Station, current_date.year, current_date.month, current_date.day)
     driver = webdriver.Chrome(options=options)
     driver.get(formattedUrl)
-    #driver.implicitly_wait(12)
+    
     time.sleep(10)
+    driver.implicitly_wait(5)
     #html = driver.page_source
     #html = requests.get(formattedUrl).text
     soup = BeautifulSoup(driver.page_source, 'html.parser')
@@ -77,5 +78,6 @@ while current_date != end_date:
 
     driver.close()
     cur.execute('''INSERT INTO weather (station, actualhightemp, histavghightemp, actuallowtemp, histavglowtemp, actualdailyavgtemp, histavgavgtemp, actualprecip, histavgprecip, year, month, day) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);''', (Station, ActHighTemp, HistAvgHighTemp, ActLowTemp, HisAvgLowTemp, ActDayAvgTemp, HistAvgAvgTemp, ActPrecip, HistAvgPrecip, current_date.year, current_date.month, current_date.day))
+    print(ActDayAvgTemp, ActHighTemp, ActLowTemp, ActPrecip)
     conn.commit()
     current_date +=timedelta(days=1)
