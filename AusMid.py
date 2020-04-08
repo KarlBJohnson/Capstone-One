@@ -24,7 +24,7 @@ while current_date != end_date:
     formattedUrl = url.format(Station, current_date.year, current_date.month, current_date.day)
     driver = webdriver.Chrome(options=options)
     driver.get(formattedUrl)
-    driver.implicitly_wait(20)
+    driver.implicitly_wait(12)
 
     #html = driver.page_source
     #html = requests.get(formattedUrl).text
@@ -60,7 +60,7 @@ while current_date != end_date:
     try:
         ActDayAvgTemp = float(weather_data[9].text)
     except:
-        HisAvgLowTemp = None
+        ActDayAvgTemp = None
     try:
         HistAvgAvgTemp = float(weather_data[10].text)
     except:
@@ -75,8 +75,6 @@ while current_date != end_date:
         HistAvgPrecip = None
 
     driver.close()
-    #print('''INSERT INTO weather 
-    #VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);'''%(Station, ActHighTemp, HistAvgHighTemp, ActLowTemp, HisAvgLowTemp, ActDayAvgTemp, HistAvgAvgTemp, ActPrecip, HistAvgPrecip, current_date, current_date.year, current_date.month, current_date.day))
     cur.execute('''INSERT INTO weather (station, actualhightemp, histavghightemp, actuallowtemp, histavglowtemp, actualdailyavgtemp, histavgavgtemp, actualprecip, histavgprecip, year, month, day) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);''', (Station, ActHighTemp, HistAvgHighTemp, ActLowTemp, HisAvgLowTemp, ActDayAvgTemp, HistAvgAvgTemp, ActPrecip, HistAvgPrecip, current_date.year, current_date.month, current_date.day))
     conn.commit()
     current_date +=timedelta(days=1)
