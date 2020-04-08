@@ -32,7 +32,7 @@ while current_date != end_date:
     #html = requests.get(formattedUrl).text
     soup = BeautifulSoup(driver.page_source, 'html.parser')
     temp = soup.find_all('div', {'class':'summary-table'})
-    #print(temp)
+    print(temp)
     weather_data = []
     for el in temp:
         weather_data.append(el.find_all('td', {'class': 'ng-star-inserted'}))
