@@ -1,7 +1,9 @@
 from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
 import selenium as sl
-
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from pymongo import MongoClient 
 import psycopg2 as pg2
 from selenium.webdriver.chrome.options import Options
@@ -9,7 +11,7 @@ from selenium import webdriver
 import time
 
 options = Options()
-options.add_argument("--headless")
+#options.add_argument("--headless")
 Station = "KAUS"
 current_date = datetime(year=1996, month=1, day=1)
 end_date = datetime(year=2009, month=1, day=1)
