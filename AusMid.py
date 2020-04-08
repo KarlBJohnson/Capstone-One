@@ -1,11 +1,11 @@
 from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
 import selenium as sl
-from selenium import webdriver
+
 from pymongo import MongoClient 
 import psycopg2 as pg2
 from selenium.webdriver.chrome.options import Options
-from selenium import webdriveroptions = Options()
+from selenium import webdriver
 
 options = Options()
 options.add_argument("--headless")
