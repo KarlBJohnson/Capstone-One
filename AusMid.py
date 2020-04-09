@@ -14,7 +14,7 @@ options = Options()
 options.add_argument("--headless")
 options.add_argument('--no-sandbox')
 options.add_argument('--disable-gpu')
-chrome_options.add_argument('--lang=en_US') 
+options.add_argument('--lang=en_US') 
 Station = "KAUS"
 current_date = datetime(year=1996, month=1, day=1)
 end_date = datetime(year=2009, month=1, day=1)
